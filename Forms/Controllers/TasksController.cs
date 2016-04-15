@@ -30,15 +30,9 @@ namespace Forms.Controllers
                 {
                     currentTasks = new List<Tasks>();
                 }
-                currentTasks.Add(newTask);
-
-                Session["tasks"] = currentTasks;
-                return RedirectToAction("Index");
+                Tasks newTask;
             }
-            else
-            {
-                return View();
-            }
+            return View();
 
         }
     }
