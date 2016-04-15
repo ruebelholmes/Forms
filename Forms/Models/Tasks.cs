@@ -8,8 +8,15 @@ namespace Forms.Models
     public class Tasks
     {
         public int ID { get; set; }
-        public string CreatedBy { get; set; }
+        public virtual  string CreatedBy { get; set; }
+        public virtual string Description { get; set; }
+        public virtual bool IsComplete { get; set; }
 
-        public bool IsComplete { get; set; }
+        public Tasks(string createdBy, string description, bool isComplete)
+        {
+            CreatedBy = createdBy;
+            Description = description;
+            IsComplete = isComplete;
+        }
     }
 }
