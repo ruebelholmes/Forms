@@ -1,27 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Forms.Models;
+using FormsMVC.Models;
 
-namespace Forms.Controllers
+namespace FormsMVC.Controllers
 {
     public class TasksController : Controller
     {
-        // GET: Tasks
+        public List<Task> tasks { get; set; } = new List<Task>();
+
+        // GET: Task
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string task)
         {
-            List<Tasks> currentTasks;
-            currentTasks = (List<Tasks>) Session["tasks"];
-            new List<Tasks>();
+            List<Task> currentTasks;
+            currentTasks = (List<Task>)Session["tasks"] ?? new List<Task>();
             return View(currentTasks);
+        }
+
+        //Create new task
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
         }
 
         // POST: Tasks/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, Tasks newTask)
         {
             if (ModelState.IsValid)
             {
@@ -30,9 +39,15 @@ namespace Forms.Controllers
                 {
                     currentTasks = new List<Tasks>();
                 }
-                Tasks newTask;
+                currentTasks.Add(newTask);
+
+                Session["tasks"] = currentTasks;
+                return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                return View();
+            }
 
         }
     }

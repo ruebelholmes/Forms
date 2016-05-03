@@ -1,0 +1,21 @@
+﻿@*@model System.Collections.Generic.List<System.Threading.Tasks.Task>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+@model List<System.Threading.Tasks.Task>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<ul>
+    @foreach (var t in Model)
+    {
+        <span><h3>@t.User</h3><br />Task Description: @t.TaskDescription<br />Complete: @t.IsCompleted</span>
+    }
+    <br />@Html.ActionLink("Add Task", "Create")
+</ul>*@

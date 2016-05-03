@@ -1,0 +1,15 @@
+﻿@using System.Activities.Expressions
+@model System.Threading.Tasks.Task
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>title</h2>
+@using (Html.BeginForm())
+{
+    <label>User: </label><input type="text" name="User" />
+    <label>Task Description: </label><input type="text" name="TaskDescription" />
+    <label>Complete: </label>@Html.CheckBoxFor(x => x.IsCompleted)
+    <button type="submit" value="Create">Add Task</button>
+}
